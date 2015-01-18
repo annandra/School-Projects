@@ -1,0 +1,45 @@
+// JavaScript source code
+var listOfRestaurants = new Array 
+listOfRestaurants[0]="Rock Bottom"
+listOfRestaurants[1]="Huber's Cafe"
+listOfRestaurants[2]="Luc Lac Vietnamese Kitchen"
+listOfRestaurants[3]="Aroy Thai Cuisine"
+listOfRestaurants[4]="Sbarro's"
+listOfRestaurants[5]="Mama Mia Trattoria"
+
+$(function() {
+    $('#hamburger').click(function () {
+        alert('You want American Cuisine');
+        $('.american').addClass('highlight');
+        $('.italian').removeClass('highlight');
+        $('.asian').removeClass('highlight');
+        
+    }); 
+    
+});
+  
+$(function () {
+    $('#spaghetti').click(function () {
+        alert('You want Italian Cuisine');
+        $('.italian').addClass('highlight');
+        $('.american').removeClass('highlight');
+        $('.asian').removeClass('highlight');
+        
+    });
+
+});
+
+$(function () {
+    $('#stirfry').click(function () {
+        alert('You want Asian Cuisine');
+        $('.asian').addClass('highlight');
+        $('.italian').removeClass('highlight');
+        $('.american').removeClass('highlight');
+
+
+   });
+
+});
+
+
+   
