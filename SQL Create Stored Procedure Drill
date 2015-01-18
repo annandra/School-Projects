@@ -1,0 +1,16 @@
+USE [AdventureWorks2008R2]
+GO
+/****** Object:  StoredProcedure [dbo].[spVacHrs]    Script Date: 01/18/2015 11:34:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER Procedure [dbo].[spVacHrs] @JobTitle nvarchar(50), @VacationHours integer
+AS
+SELECT PP.FirstName, PP.LastName, PN.PhoneNumber, HR. JobTitle, HR.VacationHours
+FROM Person.Person as PP INNER JOIN Person.PersonPhone as PN
+ON PP.BusinessEntityID = PN.BusinessEntityID INNER JOIN
+HumanResources.Employee as HR
+ON PP.BusinessEntityID = HR.BusinessEntityID
+where JobTitle = @JobTitle and
+VacationHours > @VacationHours
