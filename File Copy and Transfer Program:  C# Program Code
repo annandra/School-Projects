@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+
+
+namespace FinalDrillNo._1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            String sourceDirPath = @"C:\Users\student\Active Files 2015\Essays\C#\C# Final Drills\Drill1\Origination";
+            String destDirPath = @"C:\Users\student\Active Files 2015\Essays\C#\C# Final Drills\Drill1\Destination";
+
+
+            Console.WriteLine("File Check and Transfer program initiated.");
+            Console.WriteLine("The following files were new or modified within the last 24 hours and copied into the destination folder.\n");
+
+
+            CheckAndTransfer check = new CheckAndTransfer();
+            check.MoveAndTransfer(sourceDirPath, destDirPath);
+
+
+            Console.ReadLine();
+
+
+            }
+    }
+}
+
+
