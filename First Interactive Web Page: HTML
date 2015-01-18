@@ -1,0 +1,46 @@
+/// HTML Code file - Demonstrates links to my JavaScript and CSS code files, images, and google maps
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>What's for Lunch?</title>
+    <link rel="stylesheet" href="Style Whats for Lunch.css" type="text/css"/>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="Script Whats for Lunch.js"></script>
+    
+</head>
+<body>
+
+   
+    <h1>Deciding What's for Lunch!</h1>
+      <div>
+      <img src="hamburger.jpg" id="hamburger"/>
+      <img src="spaghetti.jpg" id="spaghetti"/>
+      <img src="stir fry.jpg" id="stirfry"/>&nbsp;
+      <img src="unknown.jpg" id="unknown" /></div>
+    <b>
+     <p>Here is a list of recommended restaurants:</p></b>     
+   
+    
+    <ul>
+             <li class="american">Rock Bottom</li>
+             <li class="american">Huber's Cafe</li>
+             <li class="asian">Luc Lac Vietnamese Kitchen</li>
+             <li class="asian">Aroy Thai Cuisine</li>
+             <li class="italian">Sbarro's</li>
+             <li class="italian">Mama Mia Trattoria</li>
+            
+         </ul>
+    <b>
+    <p> Click icon below to see a map of all the restaurants in the area.</p>
+         <a href="https://www.google.com/maps/search/restaurants/@45.5221418,-122.6776808,15z/data=!3m1!4b1?hl=en" target="blank">
+        <br />       
+        <img src="google maps.jpg" /></a></b>    
+                                                                    
+</body>
+   
+       
+</html>
