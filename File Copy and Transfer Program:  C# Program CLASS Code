@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace FinalDrillNo._1
+{
+    class CheckAndTransfer
+    {
+
+        public void MoveAndTransfer(string sourcePath, string targetPath)
+        {
+            DateTime now = DateTime.Now;
+            DateTime then = DateTime.Now.AddHours(-24);
+
+
+            foreach (string file in Directory.GetFiles(sourcePath))
+            {
+                DateTime modTime = File.GetLastWriteTime(file);
+
+                if (modTime < now && modTime > then)
+                {
+                    string fName = file.Substring(sourcePath.Length + 1);
+                    Console.WriteLine(file + "    File Last Modified:  " + modTime + "\n");
+                    // will overwrite file if already exists in destination directory
+                    File.Copy(file, Path.Combine(targetPath, fName), true);
+                }
+
+
+
+            }
+
+        }    
+    }
+}
