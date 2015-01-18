@@ -1,0 +1,80 @@
+import os
+import datetime
+import time
+import shutil
+import wx
+import sqlite3
+
+
+conn = sqlite3.connect('C:\Users\student\Desktop\Essays\Python9\Drill3\Drill3db.db')
+c = conn.cursor()
+sql = "SELECT max(DateTimeTransferred) FROM FilesMoved"
+c.execute(sql)
+
+now = datetime.datetime.fromtimestamp(int(time.time()))
+lastrun = c.fetchone()
+
+
+def readData():
+    for field in c.execute(sql):
+        return str(field).replace ('(', '').replace(')', '').replace('u\'','').replace("',","")
+                
+        
+class MyForm(wx.Frame):
+
+    def __init__(self):
+        wx.Frame.__init__(self, None, wx.ID_ANY,
+                          "File Check and Transfer!")
+
+                
+        panel = wx.Panel(self, wx.ID_ANY)
+
+        
+        lastRunText = wx.StaticText(panel, -1, 'File Check and Transfer Last Completed: ' + readData(), (3,3))
+        
+               
+        initBtn = wx.Button(panel, label = "Initiate Program", pos = (125, 50), size = (120,25))
+        initBtn.Bind(wx.EVT_BUTTON, self.onDir)
+
+    def onDir(self, event):
+
+        fromfolder = wx.DirDialog(self, "Select 'From' Folder:",
+                        style=wx.DD_DEFAULT_STYLE)
+
+        tofolder = wx.DirDialog(self, "Select 'To' Folder:",
+                                   style=wx.DD_DEFAULT_STYLE)
+
+
+
+        if fromfolder.ShowModal() == wx.ID_OK:
+            dailydir = fromfolder.GetPath()
+
+        if tofolder.ShowModal() == wx.ID_OK:
+            destdir = tofolder.GetPath()
+            
+        for root, dirs, files in os.walk(dailydir):
+                for eachFile in files:
+                    path = os.path.join(dailydir, eachFile)
+                    st = os.stat(path)
+                    mtime = datetime.datetime.fromtimestamp(int(st.st_mtime))
+
+                
+                    if lastrun[0]<str(mtime):
+                                            
+                        print('%s modified %s'%(eachFile,mtime))
+                        print (now)
+                        shutil.copy(path, destdir)
+ 
+                    
+                        c.execute("INSERT INTO FilesMoved (FileName, LastModified, DateTimeTransferred) VALUES (?,?,?)",
+                                  (eachFile, mtime, now))
+                        conn.commit()
+                            
+
+if __name__ == "__main__":
+    app = wx.App(False)
+    frame = MyForm()
+    frame.Show()
+    app.MainLoop()
+
+
